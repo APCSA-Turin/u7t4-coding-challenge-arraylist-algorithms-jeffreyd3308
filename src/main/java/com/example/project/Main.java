@@ -232,15 +232,23 @@ public class Main{
             if (list.get(i) == val) {
                 if (list.size() % 2 == 0) {
                     if (i < list.size() - 1) {
-                        list.set(i, list.get(i + 1));
+                        if (list.get(i + 1) > list.get(i)) {
+                            list.set(i, list.get(i + 1));
+                        } 
                     } else {
-                        list.set(i, list.get(i - 1));
+                        if (list.get(i - 1) > list.get(i)) {
+                            list.set(i, list.get(i - 1));
+                        }
                     }
                 } else {
                     if (i < list.size() - 1) {
-                        list.set(i, list.get(i + 1));
+                        if (list.get(i + 1) > list.get(i)) {
+                            list.set(i, list.get(i + 1));
+                        }
                     } else {
-                        list.set(i, list.get(i - 1));
+                        if (list.get(i - 1) > list.get(i)) {
+                            list.set(i, list.get(i - 1));
+                        }
                     }
                 }
             } 
@@ -317,7 +325,50 @@ public class Main{
    *  @param numList  numList of ints
    */
     public static ArrayList<Integer> modes(int[] numList){
-        
+        ArrayList<Integer> modeList = new ArrayList<Integer>();
+        ArrayList<Integer> amountList = new ArrayList<Integer>();
+        ArrayList<Integer> finalList = new ArrayList<Integer>();
+        for (int i = 0; i < numList.length; i++) {
+            boolean isIn = false;
+            for (int j = 0; j < modeList.size(); j++) {
+                if (modeList.get(j) == numList[i]) {
+                    isIn = true;
+                }
+            }
+            if (!isIn) {
+                modeList.add(numList[i]);
+            }
+        }
+
+        for (int k = 0; k < modeList.size(); k++) {
+            int amount = 0;
+            for (int l = 0; l < numList.length; l++) {
+                if (numList[l] == modeList.get(k)) {
+                    amount++;
+                }
+            }
+            amountList.add(amount);
+        }
+
+        int highest = 0;
+        for (int m = 0; m < amountList.size(); m++) {
+            if (amountList.get(m) > highest) {
+                highest = amountList.get(m);
+            }
+        }
+
+        for (int n = 0; n < modeList.size(); n++) {
+            if (amountList.get(n) == highest) {
+                finalList.add(modeList.get(n));
+            }
+        }
+
+        for (int b = 0; b < amountList.size(); b++) {
+            if (amountList.get(b) != highest) {
+                return finalList;
+            }
+        }
+
         return new ArrayList<Integer>();
     }
 }

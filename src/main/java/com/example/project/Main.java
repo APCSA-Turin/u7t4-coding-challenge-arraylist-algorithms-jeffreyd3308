@@ -328,7 +328,7 @@ public class Main{
         ArrayList<Integer> modeList = new ArrayList<Integer>();
         ArrayList<Integer> amountList = new ArrayList<Integer>();
         ArrayList<Integer> finalList = new ArrayList<Integer>();
-        for (int i = 0; i < numList.length; i++) {
+        for (int i = 0; i < numList.length; i++) { //check if modelist has numlist
             boolean isIn = false;
             for (int j = 0; j < modeList.size(); j++) {
                 if (modeList.get(j) == numList[i]) {
@@ -340,7 +340,7 @@ public class Main{
             }
         }
 
-        for (int k = 0; k < modeList.size(); k++) {
+        for (int k = 0; k < modeList.size(); k++) {//add amount to calculate mode
             int amount = 0;
             for (int l = 0; l < numList.length; l++) {
                 if (numList[l] == modeList.get(k)) {
@@ -351,19 +351,19 @@ public class Main{
         }
 
         int highest = 0;
-        for (int m = 0; m < amountList.size(); m++) {
+        for (int m = 0; m < amountList.size(); m++) {//get highest mode
             if (amountList.get(m) > highest) {
                 highest = amountList.get(m);
             }
         }
 
-        for (int n = 0; n < modeList.size(); n++) {
+        for (int n = 0; n < modeList.size(); n++) {//transfer numbers with higest mode
             if (amountList.get(n) == highest) {
                 finalList.add(modeList.get(n));
             }
         }
 
-        for (int b = 0; b < amountList.size(); b++) {
+        for (int b = 0; b < amountList.size(); b++) {//check if all modes are equal
             if (amountList.get(b) != highest) {
                 return finalList;
             }
